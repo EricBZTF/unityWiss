@@ -37,7 +37,7 @@ public class dragDrop : MonoBehaviour
         //freeSpace = GameObject.FindWithTag("FreeSpace").transform.position;
         originalLoc = transform.position;
         sPrefab = GameObject.Find("SquarePrefab");
-        sPrefabClone = GameObject.Find("SquarePrefab(Clone)");
+        
     }
 
     void OnMouseDown()
@@ -45,7 +45,9 @@ public class dragDrop : MonoBehaviour
         isDragging = true;
         if (build == false)
         {
+            sPrefab = GameObject.Find("SquarePrefab");
             GameObject newGO = GameObject.Instantiate(sPrefab, transform.position, transform.rotation) as GameObject;
+            newGO.name = "SquarePrefab";
         }
     }
 

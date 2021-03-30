@@ -6,6 +6,8 @@ public class toCopy : MonoBehaviour
 {
     public GameObject sPrefab;
     public Vector2 clonePos;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -14,16 +16,18 @@ public class toCopy : MonoBehaviour
         sPrefab = GameObject.Find("SquarePrefab");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnMouseDown()
     {
         Debug.Log("click");
         GameObject newGO = GameObject.Instantiate(sPrefab, transform.position, transform.rotation) as GameObject;
-        
+      
     }
+
+    // Update is called once per frame
+    void Update()
+    {
+       
+    }
+
+   
 }

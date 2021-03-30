@@ -5,11 +5,14 @@ using UnityEngine;
 public class dragDrop : MonoBehaviour
 {
     private bool isDragging;
-    private bool build = true;
+    private bool build = false;
     private bool isOnFree = false;
     Renderer rend;
     public GameObject[] fSpaces;
     public GameObject freeObject;
+    private bool yeetThatBitch = false;
+
+    
 
     //get position of free Space
     private Vector2 freeSpace;
@@ -22,6 +25,9 @@ public class dragDrop : MonoBehaviour
 
     //Get original Location
     private Vector3 originalLoc;
+    public GameObject sPrefab;
+    public GameObject sPrefabeClone;
+
 
 
     void Start()
@@ -30,16 +36,23 @@ public class dragDrop : MonoBehaviour
         fSpaces = GameObject.FindGameObjectsWithTag("FreeSpace");
         //freeSpace = GameObject.FindWithTag("FreeSpace").transform.position;
         originalLoc = transform.position;
+        sPrefab = GameObject.Find("SquarePrefab");
+        sPrefabClone = GameObject.Find("SquarePrefab(Clone)");
     }
 
     void OnMouseDown()
     {
         isDragging = true;
+        if (build == false)
+        {
+            GameObject newGO = GameObject.Instantiate(sPrefab, transform.position, transform.rotation) as GameObject;
+        }
     }
 
     void OnMouseUp()
     {
         isDragging = false;
+        yeetThatBitch = true;
     }
 
     void Update()
@@ -63,7 +76,7 @@ public class dragDrop : MonoBehaviour
             freeSpaceCopyTop.y += 10;
             
 
-            if (build)
+            if (build == false)
             {
                 //Check if mouse is pressed and move the object accordingly
                 if (isDragging)
@@ -89,7 +102,10 @@ public class dragDrop : MonoBehaviour
                     //Yeet it back to its starting position
                     this.transform.position = originalLoc;
                     rend.material.color = Color.white;
-
+                    if (yeetThatBitch)
+                    {
+                        Destroy(gameObject);
+                    }
                 }
 
                 //Check if Object is not on a free Space and change color to white
@@ -100,7 +116,7 @@ public class dragDrop : MonoBehaviour
                 }
 
                 //check if Object is build on a free space
-                if (isDragging == false && Vector2.Distance(freeSpace, transform.position) < 1)
+                if (isDragging == false && Vector2.Distance(freeSpace, this.transform.position) < 5.5 && Vector2.Distance(freeSpaceCopyTop, this.transform.position) < 5.5)
                 {
                     build = true;
                 }

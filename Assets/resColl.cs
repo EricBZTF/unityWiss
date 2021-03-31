@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class resColl : MonoBehaviour
+
+    public GameObject[] fSpaces;
 {
     // Start is called before the first frame update
     void Start()

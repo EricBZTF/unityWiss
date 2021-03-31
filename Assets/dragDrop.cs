@@ -18,12 +18,12 @@ public class dragDrop : MonoBehaviour
     private Vector2 freeSpace;
     private Vector2 thisFreeSpace;
 
-    //get Edgews of free Space
+    //get edges of free Space
     private Vector2 freeSpaceCopyTop;
     private Vector2 freeSpaceCopyLeft;
     private Vector2 freeSpaceCopyRight;
 
-    //Get original Location
+    //Get original location
     private Vector3 originalLoc;
     public GameObject sPrefab;
     public GameObject sPrefabeClone;
@@ -34,7 +34,6 @@ public class dragDrop : MonoBehaviour
     {
         rend = GetComponent<Renderer>();
         fSpaces = GameObject.FindGameObjectsWithTag("FreeSpace");
-        //freeSpace = GameObject.FindWithTag("FreeSpace").transform.position;
         originalLoc = transform.position;
         sPrefab = GameObject.Find("SquarePrefab");
         
@@ -125,6 +124,11 @@ public class dragDrop : MonoBehaviour
 
             }
 
+        }
+
+        if (build)
+        {
+            transform.gameObject.tag = "buildWood";
         }
     }
 }

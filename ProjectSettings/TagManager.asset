@@ -7,6 +7,7 @@ TagManager:
   - Background
   - FreeSpace
   - TreeSpace
+  - usedSpace
   layers:
   - Default
   - TransparentFX

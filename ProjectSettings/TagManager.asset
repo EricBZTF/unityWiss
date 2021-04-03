@@ -8,6 +8,7 @@ TagManager:
   - FreeSpace
   - TreeSpace
   - usedSpace
+  - buildWood
   layers:
   - Default
   - TransparentFX

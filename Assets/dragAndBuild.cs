@@ -30,6 +30,8 @@ public class dragAndBuild : MonoBehaviour
     public GameObject sPrefab;
     public GameObject sPrefabeClone;
 
+    public resColl CounterScript;
+
 
     // Start is called before the first frame update
     void Start()
@@ -97,7 +99,6 @@ public class dragAndBuild : MonoBehaviour
                     rend.material.color = Color.green;
                     thisFreeSpace = fSpaces[i].transform.position;
                     isOnFree = true;
-                    Debug.Log(freeObject);
                 }
 
                 //check if Objekt is not on a freespace when mouse stops being clicked
@@ -131,7 +132,14 @@ public class dragAndBuild : MonoBehaviour
         //changes name if it is build
         if (build)
         {
+
+            if (gameObject.name == "SquarePrefab")
+            {
+                CounterScript.pay();
+            }
+
             transform.gameObject.name = "buildWood";
+            transform.gameObject.tag = "buildWood";
             gameObject.layer = freeObject.layer;
 
             rend = GetComponent<SpriteRenderer>();

@@ -6,7 +6,7 @@ using TMPro;
 public class resColl : MonoBehaviour {
 
     public GameObject[] woodcuter;
-    int counter = 30;
+    int counter = 60;
     bool isCoroutineExecuting = false;
 
     public TMP_Text resCounter;
@@ -24,7 +24,7 @@ public class resColl : MonoBehaviour {
 
         StartCoroutine(delay());
 
-        resCounter.text = counter.ToString();
+        resCounter.text = "Wood " +counter.ToString();
     }
 
 
@@ -44,13 +44,21 @@ public class resColl : MonoBehaviour {
         }
 
         isCoroutineExecuting = false;
-        Debug.Log(counter);
 
     }
 
-    public void pay()
+    public bool pay(bool checkPay)
     {
-        counter -= 10;
-    }
+        if (counter < 10)
+        {
+            return false;
+        }
+        else
+        {
+            counter -= 10;
+
+            return true;
+        }   
+     }
   }
 

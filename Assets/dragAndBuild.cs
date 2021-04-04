@@ -132,18 +132,28 @@ public class dragAndBuild : MonoBehaviour
         //changes name if it is build
         if (build)
         {
+            bool checkPay = true;
 
             if (gameObject.name == "SquarePrefab")
             {
-                CounterScript.pay();
+                checkPay = CounterScript.pay(checkPay);
             }
 
-            transform.gameObject.name = "buildWood";
-            transform.gameObject.tag = "buildWood";
-            gameObject.layer = freeObject.layer;
+            if (checkPay)
+            {
 
-            rend = GetComponent<SpriteRenderer>();
-            rend.sortingLayerName = "Background4";
+                transform.gameObject.name = "buildWood";
+                transform.gameObject.tag = "buildWood";
+                gameObject.layer = freeObject.layer;
+
+                rend = GetComponent<SpriteRenderer>();
+                rend.sortingLayerName = "Background4";
+            }
+            else
+            {
+                Destroy(gameObject);
+                Debug.Log("not enough");
+            }
         }
     }
 }

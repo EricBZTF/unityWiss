@@ -38,7 +38,7 @@ public class dragAndBuild : MonoBehaviour
     {
         rend = GetComponent<Renderer>();
         fSpaces = GameObject.FindGameObjectsWithTag("FreeSpace");
-        sPrefab = GameObject.Find("SquarePrefab");
+        sPrefab = GameObject.Find("woodcutterPrefab");
     }
 
     // Sets draggin to true and makes a copy of gameObject
@@ -47,9 +47,9 @@ public class dragAndBuild : MonoBehaviour
         isDragging = true;
         if (build == false)
         {
-            sPrefab = GameObject.Find("SquarePrefab");
+            sPrefab = GameObject.Find("woodcutterPrefab");
             GameObject newGO = GameObject.Instantiate(sPrefab, transform.position, transform.rotation) as GameObject;
-            newGO.name = "SquarePrefab";
+            newGO.name = "woodcutterPrefab";
         }
     }
 
@@ -134,7 +134,7 @@ public class dragAndBuild : MonoBehaviour
         {
             bool checkPay = true;
 
-            if (gameObject.name == "SquarePrefab")
+            if (gameObject.name == "woodcutterPrefab")
             {
                 checkPay = CounterScript.pay(checkPay);
             }
@@ -145,6 +145,7 @@ public class dragAndBuild : MonoBehaviour
                 transform.gameObject.name = "buildWood";
                 transform.gameObject.tag = "buildWood";
                 gameObject.layer = freeObject.layer;
+                rend.material.color = Color.white;
 
                 rend = GetComponent<SpriteRenderer>();
                 rend.sortingLayerName = "Background4";
